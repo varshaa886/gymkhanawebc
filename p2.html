@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymkhana Website</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            color: #111111;
+            background-color: gray;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        #mainsec {
+            background-image: linear-gradient(to right, rgb(47, 7, 59), rgb(68, 9, 123), rgb(30, 30, 153), rgb(35, 166, 209));
+            color: bisque;
+        }
+
+        #announcement,
+        #events,
+        #feedback {
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        #announcement-banner,
+        #event-calendar,
+        #feedback-form {
+
+            padding: 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+
+            #announcement-banner,
+            #event-calendar,
+            #feedback-form {
+                padding: 5px;
+            }
+
+            h1 {
+                font-size: 1.5 em;
+            }
+
+            h2 {
+                font-size: 1.2 em;
+            }
+
+            h3 {
+                font-size: 1 em;
+            }
+
+            #feedback-form {
+                max-width: 90%;
+                margin: 0 auto;
+                padding: 5px;
+            }
+        }
+
+        @media only screen and (max-width: 576px) {
+            header {
+                font-size: 1.5 em;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+
+            #announcement-banner,
+            #event-calendar,
+            #feedback-form {
+                padding: 2px;
+            }
+        }
+    </style>
+</head>
+
+
+<header>
+    <h1>IIT INDORE-GYMKHANA</h1>
+</header>
+<section id="mainsec">
+    <section id="announcement">
+        <h2>Announcements</h2>
+        <div id="announcement-banner"></div>
+    </section>
+
+    <section id="events">
+        <h2>Upcoming Events</h2>
+        <div id="event-calendar"></div>
+    </section>
+
+    <section id="feedback">
+        <h2>Feedback</h2>
+        <form id="feedback-form">
+            <label for="feedback-text">Your Feedback:</label><br>
+            <br>
+            <textarea id="feedback-text" name="feedback-text" rows="4" cols="50"></textarea><br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</section>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const announcements = ["Adding another feather to our crown of achievements-IIT Indore has won Second Place at Inter IIT Squash Tournament in Women!!", "Gear up for the upcoming Lakshya tournaments in different sports at our campus.Best of luck Athletes. Make us proud!!", "Newly built atheletic track inaugration on April 1st by our Dean Sir. Suhas Joshi at 10am. All the students and faculty are requested to be on time."];
+        const events = [
+            { name: "Intra-Club Clash", date: "2024-03-20", time: "10:00 AM", venue: "Sports Complex", organizer: "Badminton Club" },
+            { name: "Sodoku Challenge", date: "2024-03-25", time: "2:00 PM", venue: "Maitreyi Seminar Hall", organizer: "Mathematics Club" }
+        ];
+
+
+        const announcementBanner = document.getElementById("announcement-banner");
+        let currentIndex = 0;
+
+        function displayAnnouncement() {
+            announcementBanner.textContent = announcements[currentIndex];
+            currentIndex = (currentIndex + 1) % announcements.length;
+            setTimeout(displayAnnouncement, 5000);
+        }
+
+        displayAnnouncement();
+
+
+        const eventCalendar = document.getElementById("event-calendar");
+
+        events.forEach(event => {
+            const eventItem = document.createElement("div");
+            eventItem.innerHTML = `
+      <h3>${event.name}</h3>
+      <p><strong>Date:</strong> ${event.date}</p>
+      <p><strong>Time:</strong> ${event.time}</p>
+      <p><strong>Venue:</strong> ${event.venue}</p>
+      <p><strong>Organizer:</strong> ${event.organizer}</p>
+    `;
+            eventCalendar.appendChild(eventItem);
+        });
+
+
+        const feedbackForm = document.getElementById("feedback-form");
+
+        feedbackForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const feedbackText = document.getElementById("feedback-text").value;
+            console.log("Feedback submitted:", feedbackText);
+
+            feedbackForm.reset();
+        });
+    });
+    const announcementBanner = document.getElementById("announcement-banner");
+    let currentIndex = 0;
+
+    function displayAnnouncement() {
+        announcementBanner.textContent = announcements[currentIndex];
+        currentIndex = (currentIndex + 1) % announcements.length;
+        setTimeout(displayAnnouncement, 5000);
+    }
+
+    displayAnnouncement();
+
+</script>
+</body>
+
+</html>
